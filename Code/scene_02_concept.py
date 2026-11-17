@@ -148,7 +148,7 @@ class Scene02Concept(BaseM3Scene):
                 ([Create(row1_box), FadeIn(row1_tag, shift=RIGHT * 0.1)], 0.9),
                 ([FadeOut(row1_box), Create(row2_box), FadeIn(row2_tag, shift=RIGHT * 0.1)], 0.9),
             ],
-            post_wait=0.4,
+            post_wait=1.4,
         )
 
         # ------------------------------------------------------------------
@@ -161,7 +161,7 @@ class Scene02Concept(BaseM3Scene):
                 ([GrowArrow(vec_v), FadeIn(pt_dot), FadeIn(pt_lbl), Create(dash_x), Create(dash_y), FadeIn(x_coord_lbl), FadeIn(y_coord_lbl)], 1.6),
                 ([Write(map_eq_lhs), FadeIn(col_note, shift=UP * 0.08), FadeIn(caption)], 1.8),
             ],
-            post_wait=0.5,
+            post_wait=1.7,
         )
 
         # ------------------------------------------------------------------
@@ -174,8 +174,12 @@ class Scene02Concept(BaseM3Scene):
                 ([FadeIn(rule_card, shift=UP * 0.12)], 1.2),
                 ([Indicate(rule_tex, color=CYAN, scale_factor=1.06)], 1.1),
             ],
-            post_wait=1.2,
+            post_wait=0.8,
         )
+
+        # Reinforce derived coordinate rule visually before transitioning to Scene 3
+        self.play(Indicate(map_eq_rhs[1], color=CYAN, scale_factor=1.08), run_time=1.0)
+        self.wait(1.2)
 
         self.play(*[FadeOut(m) for m in self.mobjects], run_time=0.6)
 

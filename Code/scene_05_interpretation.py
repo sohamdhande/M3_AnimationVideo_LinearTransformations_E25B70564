@@ -214,11 +214,11 @@ class Scene05Interpretation(BaseM3Scene):
                         Transform(e1, ae1),
                         Transform(e2, ae2),
                     ],
-                    2.6,
+                    2.8,
                 ),
                 ([FadeIn(corner_dots), FadeIn(corner_labels)], 1.6),
             ],
-            post_wait=0.8,
+            post_wait=2.8,
         )
 
         # ------------------------------------------------------------------
@@ -231,8 +231,13 @@ class Scene05Interpretation(BaseM3Scene):
                 ([Create(base_ext), Create(alt_line), Create(right_angle), FadeIn(height_lbl)], 1.5),
                 ([Write(area_eq), FadeIn(area2_lbl)], 1.8),
             ],
-            post_wait=0.8,
+            post_wait=0.5,
         )
+
+        # Highlight base = 2 and perpendicular height h = 1 so geometric area = 2 settles clearly
+        self.play(Indicate(base_lbl, color=CYAN, scale_factor=1.10), run_time=1.0)
+        self.play(Indicate(height_lbl, color=AMBER, scale_factor=1.10), run_time=1.0)
+        self.wait(0.8)
 
         # ------------------------------------------------------------------
         # Beat 5.3 — Algebraic determinant det(A) = 2(1) - 1(0) = 2
@@ -244,7 +249,7 @@ class Scene05Interpretation(BaseM3Scene):
                 ([Write(det_eq), ReplacementTransform(caption, caption_det)], 2.2),
                 ([Indicate(det_eq[0][-1], color=TEAL, scale_factor=1.3), Indicate(area_eq[0][-1], color=TEAL, scale_factor=1.3)], 1.2),
             ],
-            post_wait=0.8,
+            post_wait=3.3,
         )
 
         # ------------------------------------------------------------------
@@ -258,8 +263,18 @@ class Scene05Interpretation(BaseM3Scene):
                 ([FadeIn(badge_inv, shift=UP * 0.1)], 1.6),
                 ([Indicate(badge_area[1][0], color=CYAN, scale_factor=1.10), Indicate(badge_orient[1][0], color=TEAL, scale_factor=1.10), Indicate(badge_inv[1][0], color=AMBER, scale_factor=1.10)], 1.2),
             ],
-            post_wait=1.8,
+            post_wait=0.6,
         )
+
+        # Sequential visual recap of the three determinant interpretations before Scene 6
+        self.play(Indicate(badge_area[1][0], color=CYAN, scale_factor=1.12), run_time=0.9)
+        self.play(
+            Indicate(badge_orient[1][0], color=TEAL, scale_factor=1.12),
+            Indicate(orient_arc, color=TEAL, scale_factor=1.25),
+            run_time=1.1,
+        )
+        self.play(Indicate(badge_inv[1][0], color=AMBER, scale_factor=1.12), run_time=0.9)
+        self.wait(2.3)
 
         self.play(*[FadeOut(m) for m in self.mobjects], run_time=0.6)
 

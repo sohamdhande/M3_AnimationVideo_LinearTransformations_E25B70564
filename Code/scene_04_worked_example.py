@@ -167,7 +167,7 @@ class Scene04WorkedExample(BaseM3Scene):
                 ([FadeIn(header, shift=DOWN * 0.1), Create(plane), FadeIn(origin_dot), FadeIn(x_lbl), FadeIn(y_lbl), FadeIn(tick_labels), FadeIn(card_bg), FadeIn(caption)], 1.6),
                 ([FadeIn(dot_active, scale=1.4), FadeIn(lbl_old), Write(setup_eq)], 1.8),
             ],
-            post_wait=0.8,
+            post_wait=2.0,
         )
 
         # ------------------------------------------------------------------
@@ -181,7 +181,7 @@ class Scene04WorkedExample(BaseM3Scene):
                 ([FadeIn(row1_tag), Write(row1_math)], 2.8),
                 ([Indicate(row1_math[0][-1], color=CYAN, scale_factor=1.25)], 1.0),
             ],
-            post_wait=1.0,
+            post_wait=2.8,
         )
 
         # ------------------------------------------------------------------
@@ -195,7 +195,7 @@ class Scene04WorkedExample(BaseM3Scene):
                 ([FadeIn(row2_tag), Write(row2_math)], 2.2),
                 ([FadeOut(row2_box), FadeOut(col_box), FadeIn(result_card, shift=UP * 0.1)], 1.1),
             ],
-            post_wait=1.0,
+            post_wait=3.0,
         )
 
         # ------------------------------------------------------------------
@@ -246,11 +246,17 @@ class Scene04WorkedExample(BaseM3Scene):
                     2.2,
                 ),
                 ([Create(t_grid)], 1.0),
-                ([GrowArrow(step_ae1), FadeIn(step_ae1_lbl)], 1.4),
-                ([GrowArrow(step_2ae2), FadeIn(step_2ae2_lbl), ReplacementTransform(result_card, lincomb_card)], 1.8),
+                ([GrowArrow(step_ae1), FadeIn(step_ae1_lbl)], 1.6),
+                ([GrowArrow(step_2ae2), FadeIn(step_2ae2_lbl), ReplacementTransform(result_card, lincomb_card)], 2.0),
             ],
-            post_wait=2.0,
+            post_wait=0.8,
         )
+
+        # Purposeful visual replay tracing 1*Ae1 -> + 2*Ae2 -> (4, 2) so arithmetic & geometry click
+        self.play(Indicate(step_ae1, color=CYAN, scale_factor=1.08), run_time=1.2)
+        self.play(Indicate(step_2ae2, color=AMBER, scale_factor=1.08), run_time=1.2)
+        self.play(Indicate(dot_active, color=CORAL, scale_factor=1.35), run_time=1.0)
+        self.wait(2.8)
 
         self.play(*[FadeOut(m) for m in self.mobjects], run_time=0.6)
 

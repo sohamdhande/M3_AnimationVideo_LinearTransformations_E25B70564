@@ -75,7 +75,7 @@ class Scene01Hook(BaseM3Scene):
         title_block.move_to(ORIGIN)
 
         self.play(FadeIn(title_block, shift=UP * 0.2), run_time=1.0)
-        self.wait(1.5)
+        self.wait(2.3)
         self.play(FadeOut(title_block, shift=UP * 0.15), run_time=0.6)
 
         # ------------------------------------------------------------------
@@ -125,7 +125,7 @@ class Scene01Hook(BaseM3Scene):
                 ([Create(original_plane), FadeIn(origin_dot), FadeIn(x_label), FadeIn(y_label)], 1.8),
                 ([Indicate(mystery_tex, color=TEAL, scale_factor=1.10)], 1.2),
             ],
-            post_wait=0.5,
+            post_wait=1.3,
         )
 
         # ------------------------------------------------------------------
@@ -177,8 +177,16 @@ class Scene01Hook(BaseM3Scene):
                 ),
                 (None, 1.2),  # Freeze frame before matrix reveal in Scene 2
             ],
-            post_wait=1.0,
+            post_wait=0.8,
         )
+
+        # Purposeful post-narration observation pause comparing original vs. tilted teal grid
+        self.play(
+            original_plane.animate.set_opacity(0.45),
+            rate_func=there_and_back,
+            run_time=1.2,
+        )
+        self.wait(1.4)
 
         # Clean fade out into Scene 2
         self.play(*[FadeOut(m) for m in self.mobjects], run_time=0.6)

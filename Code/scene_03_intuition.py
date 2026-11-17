@@ -89,7 +89,7 @@ class Scene03Intuition(BaseM3Scene):
                 ([GrowArrow(e1), FadeIn(e1_lbl)], 1.4),
                 ([GrowArrow(e2), FadeIn(e2_lbl)], 1.4),
             ],
-            post_wait=0.5,
+            post_wait=1.7,
         )
 
         # ------------------------------------------------------------------
@@ -132,7 +132,7 @@ class Scene03Intuition(BaseM3Scene):
                 ([FadeIn(ae2_card, shift=LEFT * 0.15)], 1.2),
                 ([Transform(e2, target_e2), ReplacementTransform(e2_lbl, target_e2_lbl)], 1.8),
             ],
-            post_wait=0.6,
+            post_wait=2.6,
         )
 
         # ------------------------------------------------------------------
@@ -153,7 +153,7 @@ class Scene03Intuition(BaseM3Scene):
                 ([Create(col2_box), Indicate(e2, color=AMBER, scale_factor=1.08)], 1.6),
                 ([FadeOut(ae1_card), FadeOut(ae2_card), FadeOut(col1_box), FadeOut(col2_box)], 1.0),
             ],
-            post_wait=0.5,
+            post_wait=1.8,
         )
 
         # ------------------------------------------------------------------
@@ -182,8 +182,16 @@ class Scene03Intuition(BaseM3Scene):
                     3.2,
                 ),
             ],
-            post_wait=1.5,
+            post_wait=1.2,
         )
+
+        # Give viewers a clear comparison pulse between original square grid & transformed teal grid
+        self.play(
+            original_plane.animate.set_opacity(0.50),
+            rate_func=there_and_back,
+            run_time=1.6,
+        )
+        self.wait(2.2)
 
         self.play(*[FadeOut(m) for m in self.mobjects], run_time=0.6)
 

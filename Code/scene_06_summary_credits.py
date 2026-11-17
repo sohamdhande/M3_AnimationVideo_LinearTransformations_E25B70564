@@ -118,7 +118,7 @@ class Scene06SummaryCredits(BaseM3Scene):
                 ([FadeIn(card_1, shift=UP * 0.15)], 1.6),
                 ([FadeIn(card_2, shift=UP * 0.15)], 1.6),
             ],
-            post_wait=0.4,
+            post_wait=0.9,
         )
 
         # ------------------------------------------------------------------
@@ -130,7 +130,7 @@ class Scene06SummaryCredits(BaseM3Scene):
                 ([FadeIn(card_3, shift=UP * 0.15)], 1.6),
                 ([Indicate(card_3[2], color=TEAL, scale_factor=1.08)], 1.0),
             ],
-            post_wait=1.0,
+            post_wait=1.8,
         )
 
         # ------------------------------------------------------------------
@@ -201,6 +201,6 @@ class Scene06SummaryCredits(BaseM3Scene):
         credits_card = VGroup(credits_box, credits_content).set_z_index(3)
 
         self.play(FadeIn(credits_card, shift=UP * 0.15), run_time=0.9)
-        self.wait(4.6)
+        self.wait(5.3)
         self.play(FadeOut(credits_card), FadeOut(backdrop), run_time=0.7)
 
